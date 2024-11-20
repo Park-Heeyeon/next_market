@@ -45,15 +45,13 @@ const Header = () => {
 
           {/* Shop 항목과 하위 카테고리 */}
           <div className="relative group">
-            <a href="#" className="text-base">
-              Shop
-            </a>
-            <ul className="absolute left-0 hidden mt-2 space-y-2 bg-white shadow-lg group-hover:block w-48 p-4 rounded-md z-10">
+            <div className="text-base cursor-pointer">Shop</div>
+            <ul className="absolute left-0 hidden mt-2 space-y-2 bg-white shadow-lg group-hover:block w-48 p-4 rounded-md z-10 group-focus-within:block">
               {filterCategory?.map((item: string, idx: number) => (
                 <li key={idx}>
-                  <a href="#" className="block text-sm">
+                  <Link href={`/product/${item}`} className="block text-sm">
                     {item}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -75,7 +73,7 @@ const Header = () => {
           />
         </div>
         <div className="dropdown dropdown-end">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+          <Link href={"/cart"}>
             <div className="indicator">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +90,7 @@ const Header = () => {
                 />
               </svg>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
     </div>
