@@ -64,16 +64,16 @@ const ProductDetail = () => {
     rating: { rate, count },
   } = productInfo;
   return (
-    <div className="container mx-auto px-4 py-10 md:py-14">
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden md:flex">
+    <div className="container w-[70%] md:w-[50%] h-[100%] mx-auto py-10 md:py-14">
+      <div className="rounded-lg shadow-lg overflow-hidden flex flex-col items-center md:flex-row bg-gray-200">
         {/* 상품 이미지 */}
-        <div className="md:w-1/2 p-5 flex items-center justify-center bg-gray-200">
+        <div className="w-full flex items-center justify-center p-10 md:p-0">
           <Image
             src={image}
             alt={title}
             layout="intrinsic"
-            width={300}
-            height={300}
+            width={200}
+            height={200}
             objectFit="contain"
             className="rounded-lg"
           />
@@ -81,11 +81,13 @@ const ProductDetail = () => {
 
         {/* 상품 정보 */}
         <div className="md:w-1/2 p-6 flex flex-col space-y-4 bg-gray-50">
-          <h2 className="text-3xl font-bold text-black">{title}</h2>
-          <p className="text-xl font-semibold text-gray-800">
+          <h2 className="text-lg lg:text-xl font-bold text-black">{title}</h2>
+          <p className="text-lg lg:text-xl font-semibold text-gray-800">
             ${price.toFixed(2)}
           </p>
-          <p className="text-gray-600 leading-relaxed">{description}</p>
+          <p className="text-gray-600 leading-relaxed text-sm lg:text-base">
+            {description}
+          </p>
 
           <div className="text-gray-500 text-sm">
             Category:{" "}

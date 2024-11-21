@@ -51,6 +51,12 @@ const Header = () => {
               aria-label="close sidebar"
             ></label>
             <ul className="menu bg-base-200 text-base-content w-64 p-4 pt-10 h-full">
+              <Link href="/" className="text-base pb-2">
+                Home
+              </Link>
+              <Link href="/" className="text-base">
+                Shop
+              </Link>
               {filterCategory?.map((item: string, idx: number) => (
                 <li key={idx}>
                   <Link
@@ -70,25 +76,25 @@ const Header = () => {
       <div className="flex-1 hidden lg:flex">
         <Link
           href="/"
-          className="btn btn-ghost sm:text-lg md:text-xl font-semibold"
+          className="btn btn-ghost sm:text-lg md:text-2xl lg:text-2xl font-semibold"
         >
           Next-Mini-Market
         </Link>
 
         <div className="ml-10 flex space-x-8">
-          <Link href="/" className="text-base">
+          <Link href="/" className="text-lg">
             Home
           </Link>
 
           {/* Shop 항목과 하위 카테고리 */}
           <div className="relative group">
-            <div className="text-base cursor-pointer">Shop</div>
-            <ul className="absolute left-0 hidden mt-2 space-y-2 bg-white shadow-lg group-hover:block w-48 p-4 rounded-md z-10 group-focus-within:block">
+            <div className="text-lg cursor-pointer h-full group">Shop</div>
+            <ul className="absolute left-0 hidden space-y-2 bg-white shadow-lg group-hover:flex group-focus-within:flex flex-col w-60 p-6 rounded-md z-10">
               {filterCategory?.map((item: string, idx: number) => (
                 <li key={idx}>
                   <Link
                     href={`/productBy?category=${item}`}
-                    className="block text-sm"
+                    className="block text-base"
                   >
                     {item}
                   </Link>

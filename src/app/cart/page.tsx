@@ -57,13 +57,9 @@ const CartPage = () => {
                 key={id}
                 className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b pb-4 mb-4"
               >
-                <Image
-                  src={image}
-                  alt={title}
-                  width={100}
-                  height={100}
-                  objectFit="contain"
-                />
+                <div className="w-24 h-24 relative">
+                  <Image src={image} alt={title} fill objectFit="contain" />
+                </div>
                 <div className="flex-grow text-center sm:text-left">
                   <h3 className="font-semibold text-sm md:text-base lg:text-lg">
                     {title}

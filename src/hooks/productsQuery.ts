@@ -1,12 +1,14 @@
 import { fetchApi } from "@/app/api";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
+// 전체 상품 조회
 const getProducts = async () => {
   const data = await fetchApi(process.env.NEXT_PUBLIC_PRODUCTS_SERVER_URL);
   if (!data) throw new Error("Failed to fetch products");
   return data;
 };
 
+// id에 해당하는 상품 조회
 const getProduct = async (id: string) => {
   if (!id) throw new Error("Product ID is required");
   const data = await fetchApi(
@@ -16,6 +18,7 @@ const getProduct = async (id: string) => {
   return data;
 };
 
+// 카테고리별 상품 조회
 const getProductsByCategory = async (category: string) => {
   if (!category) throw new Error("Category is required");
 
@@ -26,6 +29,16 @@ const getProductsByCategory = async (category: string) => {
   return data;
 };
 
+// 무한스크롤 상품 조회
+const getScrollByProducts = async (pageParam: number = 1) => {
+  const data = await fetchApi(
+    `${process.env.NEXT_PUBLIC_PRODUCTS_SERVER_URL}?page=${pageParam}&limit=20`
+  );
+  if (!data) throw new Error("Failed to fetch products");
+  return data;
+};
+
+// 전체 상품 조회 query
 export const useProductsQuery = () => {
   return useQuery({
     queryKey: ["products"],
@@ -33,6 +46,7 @@ export const useProductsQuery = () => {
   });
 };
 
+// id에 해당하는 상품 조회 query
 export const useProductQuery = (id: string) => {
   return useQuery({
     queryKey: ["product", id],
@@ -41,10 +55,23 @@ export const useProductQuery = (id: string) => {
   });
 };
 
+// 카테고리에 해당하는 상품 조회 query
 export const useProductsByCategory = (category: string) => {
   return useQuery({
     queryKey: ["productsByCategory", category],
     queryFn: () => getProductsByCategory(category),
     enabled: !!category,
+  });
+};
+
+// 무한 스크롤 상품 조회 query
+export const useProductsInfiniteQuery = () => {
+  return useInfiniteQuery({
+    queryKey: ["products"],
+    queryFn: ({ pageParam = 1 }) => getScrollByProducts(pageParam),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => {
+      return lastPage.hasNextPage ? lastPage.currentPage + 1 : undefined;
+    },
   });
 };
