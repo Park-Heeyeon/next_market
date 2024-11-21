@@ -1,8 +1,5 @@
 "use client";
-import {
-  useProductsInfiniteQuery,
-  useProductsQuery,
-} from "@/hooks/productsQuery";
+import { useProductsInfiniteQuery } from "@/hooks/productsQuery";
 import ProductList from "./(productList)/ProductList";
 import { useSearchParams } from "next/navigation";
 
