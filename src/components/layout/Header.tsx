@@ -2,13 +2,26 @@
 
 import { useCategoryQuery } from "@/hooks/categoryQuery";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const Header = () => {
+  const router = useRouter();
+  const [inputValue, setInputValue] = useState<string>("");
   const { data: category } = useCategoryQuery();
 
   const filterCategory = category?.filter(
     (item: string) => item !== "electronics"
   );
+
+  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    router.push(`/?keyword=${inputValue}`);
+  };
 
   return (
     <div className="navbar bg-base-100 p-4 sm:p-5 md:p-6">
@@ -66,13 +79,18 @@ const Header = () => {
 
       {/* 검색창과 장바구니 */}
       <div className="flex-none flex items-center justify-end space-x-2 ml-auto">
-        <Link href="/">
+        <form onSubmit={onSubmit}>
           <input
             type="text"
+            value={inputValue}
+            onChange={onChangeInput}
             placeholder="Search"
             className="input input-bordered w-24 sm:w-36 md:w-auto"
           />
-        </Link>
+          <button type="submit" className="hidden">
+            Search
+          </button>
+        </form>
         <div className="dropdown dropdown-end">
           <Link href={"/cart"}>
             <div className="indicator">
