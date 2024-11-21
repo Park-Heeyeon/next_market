@@ -1,36 +1,25 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mini Market Project
 
-## Getting Started
+이 프로젝트는 **Next.js**와 **TypeScript**를 활용한 반응형 쇼핑몰입니다. 사용자는 상품을 장바구니에 추가하고, 검색 및 카테고리 필터링을 통해 손쉽게 원하는 상품을 찾을 수 있습니다. 최신 웹 기술들을 사용하여 성능과 사용자 경험을 극대화한 프로젝트입니다.
 
-First, run the development server:
+## 🛠️ 기술 스택
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+| 기술 스택            | 설명                                          |
+|--------------------|---------------------------------------------|
+| **Next.js**         | React 기반 SSR(서버 사이드 렌더링) 프레임워크 |
+| **TypeScript**      | 정적 타입 언어                                |
+| **Tailwind CSS**    | 유틸리티 기반 CSS 프레임워크                  |
+| **DaisyUI**         | Tailwind CSS 기반의 UI 컴포넌트 라이브러리     |
+| **Zustand**         | 상태 관리 라이브러리                         |
+| **TanStack Query**  | 데이터 패칭 라이브러리                       |
+| **Skeleton Screens**| 로딩 상태 UI                                |
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 주요 기능
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **장바구니 기능**: 사용자가 상품을 장바구니에 추가하면, 해당 상품의 ID가 로컬 스토리지에 저장됩니다.
+- **상품 검색**: 사용자가 검색어를 입력하면, **Next.js의 `SearchParams`**를 이용해 검색 결과를 동적으로 필터링하고 표시합니다.
+- **카테고리 필터링**: 카테고리 메뉴에서 항목을 클릭하면, 선택한 카테고리에 해당하는 상품들이 **`SearchParams`**를 통해 필터링되어 표시됩니다.
+- **다중 모달 구현**: **Zustand**를 사용하여 상태 관리를 하며, 다수의 모달을 동적으로 관리합니다.
+- **로딩 UI**: 데이터가 로딩될 때 **Skeleton 화면**을 사용하여 사용자가 기다리는 동안 깔끔한 경험을 제공합니다.
+- **API 연동**: 오픈 API인 **Fakestore API**를 활용해 상품 데이터를 패칭합니다.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
