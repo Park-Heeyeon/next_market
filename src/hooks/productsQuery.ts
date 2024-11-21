@@ -20,7 +20,7 @@ const getProductsByCategory = async (category: string) => {
   if (!category) throw new Error("Category is required");
 
   const data = await fetchApi(
-    `${process.env.NEXT_PUBLIC_PRODUCTS_SERVER_URL}/category?type=${category}`
+    `${process.env.NEXT_PUBLIC_PRODUCTS_SERVER_URL}/category/${category}`
   );
   if (!data) throw new Error("Failed to fetch products by category");
   return data;

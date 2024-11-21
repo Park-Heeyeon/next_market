@@ -3,7 +3,6 @@
 import { useProductsByCategory } from "@/hooks/productsQuery";
 import { useSearchParams } from "next/navigation";
 import ProductList from "../(productList)/ProductList";
-import { useEffect } from "react";
 
 const CategoryProductList = () => {
   const searchParams = useSearchParams();
@@ -11,11 +10,10 @@ const CategoryProductList = () => {
   const { isLoading, data: products } = useProductsByCategory(
     categoryName || ""
   );
-
-  useEffect(() => {
-    console.log("gmldus", products);
-  }, [products]);
-
-  return <ProductList isLoading={isLoading} products={products} />;
+  return (
+    <div className="flex justify-center py-28">
+      <ProductList isLoading={isLoading} products={products} />)
+    </div>
+  );
 };
 export default CategoryProductList;

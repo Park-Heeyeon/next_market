@@ -52,7 +52,7 @@ const Header = () => {
               {filterCategory?.map((item: string, idx: number) => (
                 <li key={idx}>
                   <Link
-                    href={`/product?category=${item}`}
+                    href={`/productBy?category=${item}`}
                     className="block text-sm"
                   >
                     {item}
