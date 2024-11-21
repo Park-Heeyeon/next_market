@@ -12,7 +12,6 @@
 | **DaisyUI**         | Tailwind CSS 기반의 UI 컴포넌트 라이브러리     |
 | **Zustand**         | 상태 관리 라이브러리                         |
 | **TanStack Query**  | 데이터 패칭 라이브러리                       |
-| **Skeleton Screens**| 로딩 상태 UI                                |
 
 ## 🚀 주요 기능
 
