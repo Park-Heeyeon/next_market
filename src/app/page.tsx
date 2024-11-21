@@ -1,5 +1,5 @@
 "use client";
-import { useProductsInfiniteQuery } from "@/hooks/productsQuery";
+import { useProductsQuery } from "@/hooks/productsQuery";
 import ProductList from "./(productList)/ProductList";
 import { useSearchParams } from "next/navigation";
 
@@ -16,14 +16,10 @@ export default function Home() {
   const searchParams = useSearchParams();
   const params: string | null = searchParams.get("keyword");
 
-  const { data, fetchNextPage, hasNextPage, isFetching, isLoading } =
-    useProductsInfiniteQuery();
-
-  // 무한 스크롤 데이터 병합
-  const allProducts = data?.pages.flatMap((page) => page) || [];
+  const { data: products, isLoading } = useProductsQuery();
 
   // 필터링: 카테고리가 "electronics"가 아닌 상품만 표시
-  const filterProducts = allProducts.filter(
+  const filterProducts = products.filter(
     (product: ProductType) => product?.category !== "electronics"
   );
 
@@ -50,13 +46,7 @@ export default function Home() {
             Your browser does not support the video tag.
           </video>
         </div>
-        <ProductList
-          isLoading={isLoading}
-          products={filteredProducts}
-          hasNextPage={hasNextPage}
-          isFetching={isFetching}
-          fetchNextPage={fetchNextPage}
-        />
+        <ProductList isLoading={isLoading} products={filteredProducts} />
       </main>
     </div>
   );

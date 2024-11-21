@@ -29,15 +29,6 @@ const getProductsByCategory = async (category: string) => {
   return data;
 };
 
-// 무한스크롤 상품 조회
-const getScrollByProducts = async (pageParam: number = 1) => {
-  const data = await fetchApi(
-    `${process.env.NEXT_PUBLIC_PRODUCTS_SERVER_URL}?page=${pageParam}&limit=20`
-  );
-  if (!data) throw new Error("Failed to fetch products");
-  return data;
-};
-
 // 전체 상품 조회 query
 export const useProductsQuery = () => {
   return useQuery({
@@ -61,17 +52,5 @@ export const useProductsByCategory = (category: string) => {
     queryKey: ["productsByCategory", category],
     queryFn: () => getProductsByCategory(category),
     enabled: !!category,
-  });
-};
-
-// 무한 스크롤 상품 조회 query
-export const useProductsInfiniteQuery = () => {
-  return useInfiniteQuery({
-    queryKey: ["products"],
-    queryFn: ({ pageParam = 1 }) => getScrollByProducts(pageParam),
-    initialPageParam: 1,
-    getNextPageParam: (lastPage) => {
-      return lastPage.hasNextPage ? lastPage.currentPage + 1 : undefined;
-    },
   });
 };
