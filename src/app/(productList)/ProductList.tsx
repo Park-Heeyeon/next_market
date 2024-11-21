@@ -13,7 +13,7 @@ const ProductList = ({ isLoading, products }: ProductListProps) => {
       <h2 className="pb-12 text-center font-bold text-xl sm:text-lg md:text-2xl lg:text-3xl">
         Product List
       </h2>
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-4 lg:gap-10">
         {isLoading
           ? Array.from({ length: 20 }).map((_, index) => (
               <div key={index} className="w-full">
