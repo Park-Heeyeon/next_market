@@ -43,8 +43,8 @@ const CartPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-800 p-4 sm:p-8">
-      <section className="bg-white shadow-md rounded-md p-6 mb-6">
+    <div className="min-h-screen bg-gray-100 text-gray-800 p-4 sm:p-8 flex flex-col items-center">
+      <section className="bg-white shadow-md rounded-md p-6 mb-6 w-full sm:w-[80%]">
         <h2 className="text-lg font-semibold border-b pb-4 mb-4">장바구니</h2>
 
         {cartItemDetails.length === 0 ? (
@@ -55,7 +55,7 @@ const CartPage = () => {
             return (
               <div
                 key={id}
-                className="flex flex-row items-center justify-between gap-4 border-b pb-4 mb-4"
+                className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b pb-4 mb-4"
               >
                 <Image
                   src={image}
@@ -74,19 +74,21 @@ const CartPage = () => {
                     ${price}
                   </p>
                 </div>
-                <button
-                  className="text-red-500 hover:underline"
-                  onClick={() => onClickDelBtn(id)}
-                >
-                  x
-                </button>
+                <div className="w-full sm:w-auto flex justify-center">
+                  <button
+                    className="sm:w-auto text-red-500 hover:underline"
+                    onClick={() => onClickDelBtn(id)}
+                  >
+                    x
+                  </button>
+                </div>
               </div>
             );
           })
         )}
       </section>
 
-      <section className="bg-white shadow-md rounded-md p-6">
+      <section className="bg-white shadow-md rounded-md p-6 w-full sm:w-[80%]">
         <h2 className="text-lg font-semibold border-b pb-4 mb-4">주문 요약</h2>
         <div className="flex justify-between mb-2">
           <p>총 상품금액</p>

@@ -11,7 +11,7 @@ const CategoryProductList = () => {
     categoryName || ""
   );
   return (
-    <div className="flex justify-center py-28">
+    <div className="flex justify-center py-8 sm:py-8 md:py-10 lg:py-12">
       <ProductList isLoading={isLoading} products={products} />)
     </div>
   );

@@ -27,7 +27,7 @@ export default function Home() {
       )
     : filterProducts;
   return (
-    <div className="flex flex-col min-h-screen w-full mb-20">
+    <div className="flex flex-col min-h-screen w-full h-full">
       <main className="flex flex-col items-center sm:items-start w-full px-4 sm:px-8 lg:px-16">
         {/* 비디오 컨테이너 */}
         <div className="relative w-full pt-[56.25%] sm:pt-[50%] lg:pt-[40%] mb-10">

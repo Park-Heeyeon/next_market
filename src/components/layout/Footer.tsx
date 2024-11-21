@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="w-full relative mx-auto h-fit min-w-[360px] bg-zinc-50 py-12 text-zinc-500 mx-0">
+    <footer className="w-full relative mx-auto h-fit min-w-[360px] bg-zinc-50 py-12 text-zinc-500">
       <section className="max-w-screen-xl px-5 pb-0 pr-10 sm:px-10 lg:px-24 text-xs sm:text-sm md:text-base">
         <h3 className="mb-2 text-sm sm:text-base font-bold">NextMiniMarket</h3>
         <p className="text-left">
