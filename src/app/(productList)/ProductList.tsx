@@ -1,23 +1,13 @@
-"use client";
-import { useProductsQuery } from "@/hooks/productsQuery";
+import { ProductType } from "../page";
 import ProductCard from "./ProductCard";
 import ProductCardSkeleton from "@/components/skeleton/ProductCardSkeleton";
 
-export interface ProductType {
-  id: number;
-  title: string;
-  price: string;
-  category: string;
-  description: string;
-  image: string;
+interface ProductListProps {
+  isLoading: boolean;
+  products: ProductType[];
 }
 
-const ProductList = () => {
-  const { isLoading, data: products } = useProductsQuery();
-  const filterProducts = products?.filter(
-    (product: ProductType) => product.category !== "electronics"
-  );
-
+const ProductList = ({ isLoading, products }: ProductListProps) => {
   return (
     <div className="mx-auto">
       <h2 className="pb-10 text-center font-bold text-xl sm:text-lg md:text-2xl lg:text-3xl">
@@ -30,7 +20,7 @@ const ProductList = () => {
                 <ProductCardSkeleton />
               </div>
             ))
-          : filterProducts?.map((product: ProductType) => (
+          : products?.map((product: ProductType) => (
               <div key={product.id} className="w-full">
                 <ProductCard product={product} />
               </div>

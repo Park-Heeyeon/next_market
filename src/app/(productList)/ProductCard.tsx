@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { ProductType } from "./ProductList";
 import { useRouter } from "next/navigation";
+import { ProductType } from "../page";
 
 interface Props {
   product: ProductType;

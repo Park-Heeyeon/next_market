@@ -1,15 +1,60 @@
 "use client";
+import AlertModal from "@/components/modal/AlertModal";
+import ConfirmModal from "@/components/modal/ConfirmModel";
 import ProductDetailSkeleton from "@/components/skeleton/ProductDetailSkeleton";
+import useModalStore from "@/hooks/modalStore";
 import { useProductQuery } from "@/hooks/productsQuery";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const ProductDetail = () => {
   const searchParams = useSearchParams();
   const productId = searchParams.get("id");
   const { isLoading, data: productInfo } = useProductQuery(productId || "");
+  const { open, allClose } = useModalStore();
+
+  const [cartItems, setCartItems] = useState<string[]>([]);
+
+  useEffect(() => {
+    const storageItem = localStorage.getItem("cart");
+    setCartItems(storageItem ? JSON.parse(storageItem) : []);
+  }, []);
+
+  /** 로컬스토리지에 "cart" 키값이나 cart 내에 해당 상품 id가 없으면 장바구니에 추가 있으면 '장바구니에 이미 있는 상품이에요' 모달 표시 */
+  const onClickAddCart = () => {
+    if (!productId) {
+      return;
+    }
+    open(AlertModal, {
+      content: "장바구니에 추가하시겠습니까?",
+      clickEvent: addCartHandler,
+    });
+  };
+
+  const addCartHandler = () => {
+    if (!productId) {
+      return; // productId가 빈 문자열인 경우 함수 종료
+    }
+    // 장바구니에 해당 상품 아이디가 있는 경우
+    if (cartItems?.some((item) => item === productId)) {
+      open(ConfirmModal, {
+        content: "이미 장바구니에 추가된 상품이에요.",
+        clickEvent: allClose,
+      });
+    } else {
+      const updatedCartItems = [...(cartItems || []), productId];
+      localStorage.setItem("cart", JSON.stringify(updatedCartItems));
+      setCartItems(updatedCartItems);
+      open(ConfirmModal, {
+        content: "장바구니에 추가되었습니다.",
+        clickEvent: allClose,
+      });
+    }
+  };
 
   if (isLoading) return <ProductDetailSkeleton />;
+
   const {
     image,
     title,
@@ -58,7 +103,10 @@ const ProductDetail = () => {
             </span>
           </div>
 
-          <button className="mt-6 w-full md:w-auto bg-black text-white px-6 py-2 rounded-md shadow-lg hover:bg-gray-900 transition">
+          <button
+            className="mt-6 w-full md:w-auto bg-black text-white px-6 py-2 rounded-md shadow-lg hover:bg-gray-900 transition"
+            onClick={onClickAddCart}
+          >
             Add to Cart
           </button>
         </div>

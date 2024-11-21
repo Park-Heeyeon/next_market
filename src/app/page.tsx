@@ -1,6 +1,21 @@
+"use client";
+import { useProductsQuery } from "@/hooks/productsQuery";
 import ProductList from "./(productList)/ProductList";
 
+export interface ProductType {
+  id: number;
+  title: string;
+  price: string;
+  category: string;
+  description: string;
+  image: string;
+}
+
 export default function Home() {
+  const { isLoading, data: products } = useProductsQuery();
+  const filterProducts = products?.filter(
+    (product: ProductType) => product.category !== "electronics"
+  );
   return (
     <div className="flex flex-col min-h-screen w-full mb-20">
       <main className="flex flex-col items-center sm:items-start w-full px-4 sm:px-8 lg:px-16">
@@ -17,7 +32,7 @@ export default function Home() {
             Your browser does not support the video tag.
           </video>
         </div>
-        <ProductList />
+        <ProductList isLoading={isLoading} products={filterProducts} />
       </main>
     </div>
   );
