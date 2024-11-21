@@ -27,21 +27,43 @@ const Header = () => {
     <div className="navbar bg-base-100 p-4 sm:p-5 md:p-6">
       {/* 모바일 환경에서만 보이는 햄버거 메뉴 */}
       <div className="block lg:hidden">
-        <button className="btn btn-square btn-ghost">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            className="inline-block h-5 w-5 stroke-current"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
-          </svg>
-        </button>
+        <div className="drawer">
+          <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+          <label htmlFor="my-drawer-2" className="btn btn-square btn-ghost">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              className="inline-block h-5 w-5 stroke-current"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
+          </label>
+          <div className="drawer-side fixed inset-0 z-50">
+            <label
+              htmlFor="my-drawer-2"
+              className="drawer-overlay"
+              aria-label="close sidebar"
+            ></label>
+            <ul className="menu bg-base-200 text-base-content w-64 p-4 pt-10 h-full">
+              {filterCategory?.map((item: string, idx: number) => (
+                <li key={idx}>
+                  <Link
+                    href={`/productBy?category=${item}`}
+                    className="block text-base"
+                  >
+                    {item}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
 
       {/* 노트북 이상 환경에서만 보이는 로고, 네비게이션 */}
