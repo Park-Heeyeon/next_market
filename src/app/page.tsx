@@ -19,8 +19,8 @@ export default function Home() {
   const { data: products, isLoading } = useProductsQuery();
 
   // 필터링: 카테고리가 "electronics"가 아닌 상품만 표시
-  const filterProducts = products.filter(
-    (product: ProductType) => product?.category !== "electronics"
+  const filterProducts = products?.filter(
+    (product: ProductType) => product.category !== "electronics"
   );
 
   // url에 params가 존재하는경우, 해당 키워드가 포함되는 상품 필터링
