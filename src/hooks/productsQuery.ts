@@ -1,20 +1,17 @@
-import { fetchApi } from "@/app/api";
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 // 전체 상품 조회
 const getProducts = async () => {
-  const data = await fetchApi(process.env.NEXT_PUBLIC_PRODUCTS_SERVER_URL);
-  if (!data) throw new Error("Failed to fetch products");
+  const response = await fetch("api/products");
+  const data = await response.json();
   return data;
 };
 
 // id에 해당하는 상품 조회
 const getProduct = async (id: string) => {
   if (!id) throw new Error("Product ID is required");
-  const data = await fetchApi(
-    `${process.env.NEXT_PUBLIC_PRODUCTS_SERVER_URL}/${id}`
-  );
-  if (!data) throw new Error(`Failed to fetch product with id: ${id}`);
+  const response = await fetch(`api/products/product?id=${id}`);
+  const data = await response.json();
   return data;
 };
 
@@ -22,10 +19,8 @@ const getProduct = async (id: string) => {
 const getProductsByCategory = async (category: string) => {
   if (!category) throw new Error("Category is required");
 
-  const data = await fetchApi(
-    `${process.env.NEXT_PUBLIC_PRODUCTS_SERVER_URL}/category/${category}`
-  );
-  if (!data) throw new Error("Failed to fetch products by category");
+  const response = await fetch(`api/products/category?category=${category}`);
+  const data = await response.json();
   return data;
 };
 

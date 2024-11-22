@@ -1,12 +1,9 @@
-import { fetchApi } from "@/app/api";
 import { useQuery } from "@tanstack/react-query";
 
 const getCategory = async () => {
-  const data = await fetchApi(
-    `${process.env.NEXT_PUBLIC_PRODUCTS_SERVER_URL}/categories`
-  );
-  if (!data) throw new Error("Failed to fetch getCategory");
-  return data || [];
+  const response = await fetch("api/categories");
+  const data = await response.json();
+  return data;
 };
 
 export const useCategoryQuery = () => {
